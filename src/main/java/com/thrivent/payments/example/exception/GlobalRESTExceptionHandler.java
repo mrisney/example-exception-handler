@@ -15,6 +15,9 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @ControllerAdvice
 public class GlobalRESTExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -28,6 +31,8 @@ public class GlobalRESTExceptionHandler extends ResponseEntityExceptionHandler {
 				.status(HttpStatus.NOT_FOUND)
 				.timeStamp(LocalDateTime.now(ZoneOffset.UTC).toString())
 				.build();
+		
+		log.error(response.toString());
 		
 		return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 
