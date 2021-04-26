@@ -1,4 +1,4 @@
-package com.thrivents.payments.example;
+package com.thrivent.payments.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.thrivents.payments.example.comtroller;
+package com.thrivent.payments.example.controller;
 
 import javax.validation.Valid;
 
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.thrivents.payments.example.domain.Payment;
-import com.thrivents.payments.example.exception.CustomException;
-import com.thrivents.payments.example.exception.NotFoundException;
-import com.thrivents.payments.example.service.ExampleService;
+import com.thrivent.payments.example.domain.Payment;
+import com.thrivent.payments.example.exception.CustomException;
+import com.thrivent.payments.example.exception.NotFoundException;
+import com.thrivent.payments.example.service.ExampleService;
 
 @RestController
 @RequestMapping("/payments")

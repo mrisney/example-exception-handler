@@ -1,4 +1,4 @@
-package com.thrivents.payments.example.config;
+package com.thrivent.payments.example.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +24,7 @@ public class SwaggerConfig {
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("com.thrivents.payments.example"))
+				.apis(RequestHandlerSelectors.basePackage("com.thrivent.payments.example"))
 				.build().apiInfo(apiInfo());
 	}
 

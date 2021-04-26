@@ -1,4 +1,4 @@
-package com.thrivents.payments.example.config;
+package com.thrivent.payments.example.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;

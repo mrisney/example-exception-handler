@@ -1,4 +1,4 @@
-package com.thrivents.payments.example.exception;
+package com.thrivent.payments.example.exception;
 
 public class NotFoundException extends Exception {
 

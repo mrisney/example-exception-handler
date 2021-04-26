@@ -1,4 +1,4 @@
-package com.thrivents.payments.example.exception;
+package com.thrivent.payments.example.exception;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -23,7 +23,7 @@ public class GlobalRESTExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		ApiErrorResponse response = ApiErrorResponse.builder()
 				.detail("Not able to find customer record")
-				.message("Not a valid user id.Please provide a valid payment id or contact system admin.")
+				.message(ex.getMessage())
 				.errorCode("404")
 				.status(HttpStatus.NOT_FOUND)
 				.timeStamp(LocalDateTime.now(ZoneOffset.UTC).toString())
@@ -56,7 +56,7 @@ public class GlobalRESTExceptionHandler extends ResponseEntityExceptionHandler {
 
 		ApiErrorResponse response = ApiErrorResponse.builder()
 				.detail("Some Custom Error")
-				.message("something")
+				.message(ex.getMessage())
 				.errorCode("410")
 				.status(HttpStatus.GONE)
 				.timeStamp(LocalDateTime.now(ZoneOffset.UTC).toString())
@@ -74,8 +74,8 @@ public class GlobalRESTExceptionHandler extends ResponseEntityExceptionHandler {
 				.message(ex.getLocalizedMessage())
 				.errorCode("502")
 				.errorCode(status.BAD_GATEWAY.name())
-				.timeStamp(LocalDateTime.now(ZoneOffset.UTC)
-						.toString()).build();
+				.timeStamp(LocalDateTime.now(ZoneOffset.UTC).toString())
+				.build();
 		return new ResponseEntity<>(response, response.getStatus());
 	}
 

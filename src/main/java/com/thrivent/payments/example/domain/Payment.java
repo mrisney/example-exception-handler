@@ -1,4 +1,4 @@
-package com.thrivents.payments.example.domain;
+package com.thrivent.payments.example.domain;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
