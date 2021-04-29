@@ -2,6 +2,7 @@ package com.thrivent.payments.example.exception;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,8 +25,13 @@ public class GlobalRESTExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler({ NotFoundException.class })
 	public ResponseEntity<Object> customerNotFound(NotFoundException ex) {
 		
-		ApiErrorResponse response = ApiErrorResponse.builder()
+		List<String> errors =  new ArrayList<>();
+		errors.add("some major error");
+		errors.add("another error ....");
+		
+		ExampleErrorResponse response = ExampleErrorResponse.builder()
 				.detail("Not able to find customer record")
+				.moreDetails(errors)
 				.message(ex.getMessage())
 				.errorCode("404")
 				.status(HttpStatus.NOT_FOUND)
@@ -47,7 +53,7 @@ public class GlobalRESTExceptionHandler extends ResponseEntityExceptionHandler {
 				ex.getBindingResult().getFieldErrors().stream().map(e -> e.getDefaultMessage())
 				.collect(Collectors.toList());
 		
-		ApiErrorResponse response = ApiErrorResponse.builder().status(status).detail("not valid arguments")
+		ExampleErrorResponse response = ExampleErrorResponse.builder().status(status).detail("not valid arguments")
 				.message(errorMsg.toString()).errorCode("406")
 				.errorCode(status.NOT_ACCEPTABLE.name())
 				.timeStamp(LocalDateTime.now(ZoneOffset.UTC).toString())
@@ -59,10 +65,10 @@ public class GlobalRESTExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler({ CustomException.class })
 	public ResponseEntity<Object> handleCustomAPIException(CustomException ex) {
 
-		ApiErrorResponse response = ApiErrorResponse.builder()
+		ExampleErrorResponse response = ExampleErrorResponse.builder()
 				.detail("Some Custom Error")
 				.message(ex.getMessage())
-				.errorCode("410")
+				.errorCode("1234")
 				.status(HttpStatus.GONE)
 				.timeStamp(LocalDateTime.now(ZoneOffset.UTC).toString())
 				.build();
@@ -74,7 +80,7 @@ public class GlobalRESTExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<ApiErrorResponse> handleCustomAPIException(Exception ex, HttpHeaders headers,
 			HttpStatus status, WebRequest request) {
 
-		ApiErrorResponse response = ApiErrorResponse.builder()
+		ExampleErrorResponse response = ExampleErrorResponse.builder()
 				.status(status).detail("Something went wrong")
 				.message(ex.getLocalizedMessage())
 				.errorCode("502")
